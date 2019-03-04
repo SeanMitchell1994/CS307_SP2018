@@ -1,0 +1,64 @@
+\contentsline {section}{\numberline {1}System Overview}{5}
+\contentsline {subsection}{\numberline {1.1}UML Diagram}{5}
+\contentsline {section}{\numberline {2}Class Descriptions}{5}
+\contentsline {section}{\numberline {3}Background Infomation}{6}
+\contentsline {section}{\numberline {4}Object Functionality}{7}
+\contentsline {subsection}{\numberline {4.1}CS\_307\_Main.cpp}{7}
+\contentsline {subsubsection}{\numberline {4.1.1}Main()}{7}
+\contentsline {subsection}{\numberline {4.2}Simulation.cpp}{7}
+\contentsline {subsubsection}{\numberline {4.2.1}Simulation()}{7}
+\contentsline {subsubsection}{\numberline {4.2.2}\textasciitilde Simulation()}{7}
+\contentsline {subsubsection}{\numberline {4.2.3}Sim\_Main()}{7}
+\contentsline {subsubsection}{\numberline {4.2.4}Sim\_Report()}{7}
+\contentsline {subsection}{\numberline {4.3}Class Garden}{8}
+\contentsline {subsubsection}{\numberline {4.3.1}Garden()}{8}
+\contentsline {subsubsection}{\numberline {4.3.2}\textasciitilde Garden()}{8}
+\contentsline {subsubsection}{\numberline {4.3.3}Garden\_Main()}{8}
+\contentsline {subsubsection}{\numberline {4.3.4}Breed()}{8}
+\contentsline {subsubsection}{\numberline {4.3.5}Get\_Child\_Vector()}{8}
+\contentsline {subsection}{\numberline {4.4}Class Parser}{9}
+\contentsline {subsubsection}{\numberline {4.4.1}GeneticsSimDataParser()}{9}
+\contentsline {subsubsection}{\numberline {4.4.2}\textasciitilde GeneticsSimDataParser()}{9}
+\contentsline {subsubsection}{\numberline {4.4.3}getGeneCount()}{9}
+\contentsline {subsubsection}{\numberline {4.4.4}getGenus()}{9}
+\contentsline {subsubsection}{\numberline {4.4.5}getSpecies()}{9}
+\contentsline {subsubsection}{\numberline {4.4.6}getScientificName()}{9}
+\contentsline {subsubsection}{\numberline {4.4.7}getCommonName()}{9}
+\contentsline {subsubsection}{\numberline {4.4.8}getGeneData()}{10}
+\contentsline {subsubsection}{\numberline {4.4.9}getParentGenotype()}{10}
+\contentsline {subsection}{\numberline {4.5}Class Organism Factory}{11}
+\contentsline {subsubsection}{\numberline {4.5.1}Organism\_Factory()}{11}
+\contentsline {subsubsection}{\numberline {4.5.2}Organism\_Factory Instance()}{11}
+\contentsline {subsubsection}{\numberline {4.5.3}Breed(parent\_1, parent\_2)}{11}
+\contentsline {subsection}{\numberline {4.6}Class Organism}{12}
+\contentsline {subsubsection}{\numberline {4.6.1}Organism()}{12}
+\contentsline {subsubsection}{\numberline {4.6.2}\textasciitilde Organism()}{12}
+\contentsline {subsubsection}{\numberline {4.6.3}Set\_Name()}{12}
+\contentsline {subsubsection}{\numberline {4.6.4}Get\_Name()}{12}
+\contentsline {subsubsection}{\numberline {4.6.5}Set\_Attribute()}{12}
+\contentsline {subsubsection}{\numberline {4.6.6}Get\_Attribute()}{12}
+\contentsline {subsubsection}{\numberline {4.6.7}Set\_Gene()}{12}
+\contentsline {subsubsection}{\numberline {4.6.8}Get\_Gene()}{12}
+\contentsline {subsection}{\numberline {4.7}Class Chromosome Factory}{13}
+\contentsline {subsubsection}{\numberline {4.7.1}Chromosome\_Factory()}{13}
+\contentsline {subsubsection}{\numberline {4.7.2}Chromosome\_Factory Instance()}{13}
+\contentsline {subsubsection}{\numberline {4.7.3}Breed(parent\_1\_chromosome, parent\_2\_chromosome)}{13}
+\contentsline {subsection}{\numberline {4.8}Class Chromosome }{14}
+\contentsline {subsubsection}{\numberline {4.8.1}Chromosome()}{14}
+\contentsline {subsubsection}{\numberline {4.8.2}Get\_Chromosome()}{14}
+\contentsline {subsection}{\numberline {4.9}Class Gene}{15}
+\contentsline {subsubsection}{\numberline {4.9.1}Gene(allele\_characters)}{15}
+\contentsline {subsubsection}{\numberline {4.9.2}\textasciitilde Gene()}{15}
+\contentsline {subsubsection}{\numberline {4.9.3}Get\_Allele\_Characters}{15}
+\contentsline {subsubsection}{\numberline {4.9.4}Get\_Name()}{15}
+\contentsline {subsubsection}{\numberline {4.9.5}Get\_Attribute()}{15}
+\contentsline {subsubsection}{\numberline {4.9.6}Get\_Gene()}{15}
+\contentsline {subsection}{\numberline {4.10}Class Master Gene}{16}
+\contentsline {subsubsection}{\numberline {4.10.1}Master\_Gene()}{16}
+\contentsline {subsubsection}{\numberline {4.10.2}Get\_Name()}{16}
+\contentsline {subsubsection}{\numberline {4.10.3}Get\_Attribute()}{16}
+\contentsline {subsubsection}{\numberline {4.10.4}Get\_Gene()}{16}
+\contentsline {subsection}{\numberline {4.11}Class Master Gene Factory}{17}
+\contentsline {subsubsection}{\numberline {4.11.1}Master\_Gene\_Factory()}{17}
+\contentsline {subsubsection}{\numberline {4.11.2}Master\_Gene\_Factory Instance()}{17}
+\contentsline {subsubsection}{\numberline {4.11.3}Create\_Gene()}{17}

@@ -1,0 +1,395 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% University/School Laboratory Report
+% LaTeX Template
+% Version 3.1 (25/3/14)
+%
+% This template has been downloaded from:
+% http://www.LaTeXTemplates.com
+%
+% Original author:
+% Linux and Unix Users Group at Virginia Tech Wiki 
+% (https://vtluug.org/wiki/Example_LaTeX_chem_lab_report)
+%
+% License:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass{article}
+
+\usepackage{graphicx} % Required for the inclusion of images
+\usepackage{amsmath}
+\usepackage{float}
+\usepackage{indentfirst}
+\usepackage[margin=1in]{geometry}
+\usepackage[framed,numbered]{matlab-prettifier}
+\usepackage{array}
+\usepackage{amssymb}
+\usepackage{caption}
+\usepackage{multirow}
+\setlength{\parskip}{\baselineskip}
+\renewcommand{\labelenumi}{\alph{enumi}.} 
+\setlength\extrarowheight{2pt}
+\usepackage{times}
+\usepackage{color} %red, green, blue, yellow, cyan, magenta, black, white
+\definecolor{mygreen}{RGB}{28,172,0} % color values Red, Green, Blue
+\definecolor{mylilas}{RGB}{170,55,241}
+
+%----------------------------------------------------------------------------------------
+%	DOCUMENT INFORMATION
+%----------------------------------------------------------------------------------------
+
+\begin{document}
+
+\begin{center}
+\begin{tabular}{l}
+
+\textbf{Class Outline}\\
+\\
+Simulation of Mendelian Laws of Genetics\\
+\textbf{Programming Assignment} 2\\
+\\
+
+Date: March 18th, 2018\\
+\\
+\textbf{Prepared by}\\
+Sean Mitchell\\
+sm0077@uah.edu\\
+\\
+
+\textbf{Prepared for}\\
+Dr. Rick Coleman\\
+CS 307 - 01: Object Oriented Programming in C++\\
+Computer Science Department\\
+University of Alabama in Huntsville\\
+
+\end{tabular}
+\end{center}
+
+%----------------------------------------------------------------------------------------
+%	SECTION 1
+%----------------------------------------------------------------------------------------
+\newpage
+\setcounter{tocdepth}{4}
+\setcounter{secnumdepth}{4}
+%\renewcommand*\contentsname{Table of Contents}
+\tableofcontents
+\newpage
+
+\section{System Overview}
+\hrule
+\subsection{UML Diagram}
+\begin{center}
+\begin{minipage}{\textwidth}
+\includegraphics[width=1\linewidth]{main.png}
+\captionof{figure}{Preliminary UML Class Diagram}
+\end{minipage}
+\end{center}
+
+\section{Class Descriptions}
+\begin{description}
+
+\item[Simulation] The Simulation class will perform three main tasks. The first task will be to ask the user how many offspring to create. The second task will be asking the user the name of the data file to read as input. Using the input from the first two tasks, the Simulation object will create an instance of Garden, passing the number of children to create and the input file as arguments.
+
+\item[Garden] The Garden class will perform several tasks. The first task will use the data file passed as input to create two parent Organism objects. Once these two parents have been created, the Garden object will allocate data structures to store the children. Next, the Garden object will breed the two parents until the number of offspring created matches the input received from the Simulation object. Once all the offspring are created, the Garden object will sort the data structures. Finally the Garden object will return a report of the results of the simulation.
+
+\item[Parser] The Parser object will read the attributes of each gene. This object will be called by the factories to return the data needed to for the factories to create their instances.
+
+\item[Organism] The Organism class will be an instance of the object returned from the Organism Factory. The class will contain a Chromosome vector which will store all the Chromosome objects that the Organism has. Other member variables that class will have include both the common name and scientific name. The class will also have accessor and mutator functions to these member variables.
+
+\item[Organism Factory]The Organism Factory will perform the creation of instances of Organism. The Organism Factory class is a simple factory. The Organism Factory shall use the Chromosome Factory to create chromosomes for organisms. The Organism Factory shall contain a function which returns an instance of an organism with fully defined genotype. This factory will also be a Singleton.
+
+\item[Chromosome] The Chromosome class will be an instance of the object returned from the Chromosome Factory. Instances of Chromosome will store the genes for that particular chromosome. 
+
+\item[Chromosome Factory] The Chromosome Factory class will perform the creation of instances of chromosomes. This class will be a simple factory. The Chromosome Factory shall use the Master Gene Factory to create genes for chromosomes. This factory will also be a Singleton.
+
+\item[Gene] The Gene class will be an instance of the object returned from the Gene Factory. The Gene class will hold a reference to the master gene and variables to hold the specific allele characters for that instance of the gene.
+
+\item[Master Gene] The Master Gene class is a single instance for each type of gene. This instance will hold most of the information that is common to many genes.
+
+\item[Master Gene Factory] The Master Gene Factory class will perform the creation of instances of both Master Gene and Gene. This class is a simple factory. This factory will also be a Singleton.
+
+\end{description}
+
+\section{Background Information}
+\hrule
+In 1866 an Austrian monk named Gregor Mendel published a paper in Proceedings of the Natural Society of Brunn, in which he described the laws of genetics which he had formulated from his work cultivating, cross-breeding, and testing thousands of pea plants (Pisum sativum). Some of the traits he studied were plant stature (tall vs. dwarf), seed color (green vs. yellow), and seed pod texture (smooth vs. wrinkled). While getting little attention from the scientific community at first, his work later became the foundation for the entire science of genetics and today Mendel is known as the "father of modern genetics."
+
+Mendel showed that for any particular trait, such as plant stature, there were actually two genes forming a matched gene pair to determine the trait. Each of the genes in the pair could be either of two types. One gene type produced tall plants. This he represented with a T. The other produced dwarf plants and he represented this with a t. Thus, to represent the genotype or genetic makeup of a plant with regard to stature he could use, TT, Tt, or tt. He found that if a plant had at least one "tall" gene (represented as TT or Tt) it was always tall. This gene type he called dominant. Only when the genotype for a plant’s stature was represented as tt was it a dwarf plant. This gene type he called recessive. 
+
+Mendel came to this conclusion when he found that if he crossed a plant that always produced tall offspring, i.e. was pure-bred tall, with a plant that always produced dwarf offspring, i.e. was pure-bred dwarf, he got not medium sized plants but all tall plants. And, when he crossed these plants he got both tall and dwarf plants in a ratio of three tall to one dwarf. Mendel said that organisms have genes for traits in pairs. That when reproducing each parent plant contributes one of their pair of genes for each trait to each of the offspring. Which gene of the pair is contributed is purely random. This is easy to see if we look at a diagram representing the possible combinations. On the left we see the possible combinations when crossing a pure-bred tall (also called homozygous tall) with a pure-bred dwarf (also called homozygous dwarf) plant. All the offspring will be hybrid tall (also called heterozygous tall). When two of these hybrid plants are crossed we see that the phenotypes (visible traits) give a ratio of tall to dwarf plants of 3:1. The possible genotype combinations give a ratio of one homozygous tall to two heterozygous tall to one homozygous dwarf.
+
+
+
+%----------------------------------------------------------------------------------------
+%	SECTION 2
+%----------------------------------------------------------------------------------------
+
+\newpage
+
+\section{Object Description}
+\hrule
+\subsection{Class Simulation}
+\subsubsection{Member Variables}
+\begin{description}
+\item[int number\_of\_children] Number of children to create
+\item[string input\_file] String the contains the name of the input data file
+\end{description}
+\subsubsection{Member Functions}
+\textbf{There will be get and set functions defined for each private member variable.}
+
+\paragraph{Function Simulation()}
+ Actions Performed- Constructor for the Simulation object
+                 
+Arguments-None
+                    
+Return Value- This function an instance of the Simulation class
+
+\paragraph{Function Sim\_Start()}
+Actions Performed- This function starts the simulation, and queries the user for all the required inputs (data file, number of children)
+                 
+Arguments-None
+                    
+Return Value- This function returns void
+
+\paragraph{Function Sim\_Report()}
+Actions Performed- This function returns a report of the simulation
+                 
+Arguments-None
+                    
+Return Value- This function returns void
+
+\newpage
+\subsection{Class Garden}
+\subsubsection{Member Variables}
+\begin{description}
+\item[vector parents] Data structure to hold the parents
+\item[vector master\_genes] Data structure to hold the master genes
+\item[vector children] Data structure to hold the children
+\item[string input\_file] String the contains the name of the input data file
+\end{description}
+\subsubsection{Member Functions}
+\textbf{There will be get and set functions defined for each private member variable.}
+\paragraph{Function Garden()}
+Actions Performed-Default constructor
+                 
+Arguments-string file\_path
+                    
+Return Value-void
+
+\paragraph{Function Create\_Parents()}
+Actions Performed- This function calls the Organism Factory and stores the returned objects in the parent vector.
+                 
+Arguments- This function does not take any arguments.
+                    
+Return Value- This function returns void.
+
+\paragraph{Function Breed()}
+Actions Performed- This function calls the Organism Factory and stores the returned objects in the parent child  
+               
+Arguments- This function does not take any arguments.
+                    
+Return Value- This function returns void.
+
+\paragraph{Function Sort\_Vector()}
+Actions Performed- This function walks through the children vector and finds the number of children that have specific gene combinations. When this is complete, it returns an array of ints, where each element is the number of children with that combination of genes
+                 
+Arguments- This function does not take any arguments.
+                    
+Return Value- This function returns an array of ints.
+
+\newpage
+
+\subsection{Class Parser}
+\subsubsection{Member Variables}
+\begin{description}
+\item[ifstream inFile] Genetics sim data definition file
+\item[int m\_iNumGenes] Number of genes in the data file
+\item[int m\_iNextGeneNumber] Counter to next gene to read
+\item[int m\_iNextParentNumber] Counter to next parent genotype to read
+\item[char m\_sFileName] Data file name
+\item[char m\_sGenus] Genus name of this test organism
+\item[char m\_sSpecies] Species name of this test organism
+\item[char m\_sSciName] Full scientific name of the test organism
+\item[char m\_sCommonName] Common use name of the test organism
+\end{description}
+\subsubsection{Member Functions}
+\textbf{There will be get and set functions defined for each private member variable.}
+\paragraph{Function GeneticsSimDataParser}
+Actions Performed-Default constructor
+                 
+Arguments- This function takes a char holding the input file name as an argument
+                    
+Return Value-This function returns an instance of the class
+
+
+\newpage
+\subsection{Class Organism}
+\subsubsection{Member Variables}
+\begin{description}
+\item[vector genotype] vector that contains the chromosomes of the organism
+\item[string common\_name] Private member string holding the common name of the organism
+\item[string scientific\_name] Private member string holding the scientific name of the organism
+\end{description}
+\subsubsection{Member Functions}
+\textbf{There will be get and set functions defined for each private member variable.}
+
+\paragraph{Function Organism()}
+Actions Performed-Constructor that handles the creation of the parent objects. Once the a parent is created, it gets added to the parent vector
+                 
+Arguments-This function takes the return of the Parser object and creates a parent based on the contents of the data file
+                    
+Return Value- This function returns an instance of the class
+
+\paragraph{Function Organism()}
+Actions Performed-Child constructor
+                 
+Arguments-This function takes two parents as arguments and creates a child based on those attributes
+                    
+Return Value- This function returns an instance of the class
+
+\newpage
+\subsection{Class Organism Factory}
+\subsubsection{Member Variables}
+\begin{description}
+\item[Organism Factory * instance] instance of the factory
+\item[string input\_file] String the contains the name of the input data file
+\end{description}
+\subsubsection{Member Functions}
+\textbf{There will be get and set functions defined for each private member variable.}
+
+\paragraph{Function Organism Factory()}
+Actions Performed-Constructor
+                 
+Arguments- This function takes the name of the input data file as an argument
+                    
+Return Value-  This function returns void.
+
+\paragraph{Function static *Get\_Instance()}
+Actions Performed-Function to get a pointer to the instance of this factory
+                 
+Arguments- This function does not take any arguments.
+                    
+Return Value- This function returns a pointer to the instance of this factory
+
+\paragraph{Function Build\_Organism()}
+Actions Performed-Builds an organism
+                 
+Arguments- This function does not take any arguments.
+                    
+Return Value- This function returns an organism object
+
+\newpage
+\subsection{Class Chromosome}
+\subsubsection{Member Variables}
+\begin{description}
+\item[vector gene] vector that contains the genes of the organism
+\end{description}
+\subsubsection{Member Functions}
+\textbf{There will be get and set functions defined for each private member variable.}
+
+\newpage
+\subsection{Class Chromosome Factory}
+\subsubsection{Member Variables}
+\begin{description}
+\item[Chromosome Factory * instance] instance of the factory
+\end{description}
+\subsubsection{Member Functions}
+\textbf{There will be get and set functions defined for each private member variable.}
+
+\paragraph{Function Chromosome Factory()}
+Actions Performed-Constructor
+                 
+Arguments- This function takes the name of the input data file as an argument
+                    
+Return Value-  This function returns void.
+
+\paragraph{Function static *Get\_Instance()}
+Actions Performed-Function to get a pointer to the instance of this factory
+                 
+Arguments- This function does not take any arguments.
+                    
+Return Value- This function returns a pointer to the instance of this factory
+
+\paragraph{Function Build\_Chromosome()}
+Actions Performed-Builds a chromosome
+                 
+Arguments- This function does not take any arguments.
+                    
+Return Value- This function returns an chromosome object
+\newpage
+\subsection{Class Gene}
+\subsubsection{Member Variables}
+\begin{description}
+\item[string gene\_id] Private member string holding the specific allele characters for that instance of the gene.
+\item[Master Gene Pointer] Private pointer to the master gene for that specific instance of the gene
+\end{description}
+\subsubsection{Member Functions}
+\textbf{There will be get and set functions defined for each private member variable.}
+\paragraph{Function Gene()}
+Actions Performed- Default constructor. This constructor is used to create the objects for the master genes. The master genes will contain all the possible info about each genotype.
+                 
+Arguments-None
+                    
+Return Value- This function returns an instance of the class
+
+\paragraph{Function Gene()}
+Actions Performed- Overloaded constructor. This constructor creates a new gene based on the genes it receives from two parent Organisms.
+                 
+Arguments- This function receives input of two alleles, one from each parent.
+                    
+Return Value- This function returns an instance of the class
+
+\newpage
+\subsection{Class Master Gene}
+\subsubsection{Member Variables}
+\begin{description}
+\item[string gene\_trait] Private member string holding a string of the trait of that gene
+\item[string gene\_dom\_symbol] Private member string holding the symbol of the dominant gene
+\item[string gene\_rec\_symbol] Private member string holding the symbol of the recessive gene
+\item[string gene\_crossover] Private member string holding the percentage crossover chance of that gene
+\end{description}
+\subsubsection{Member Functions}
+\textbf{There will be get and set functions defined for each private member variable.}
+
+\newpage
+\subsection{Class Master Gene Factory}
+\subsubsection{Member Variables}
+\begin{description}
+\item[Gene Factory * instance] instance of the factory
+\end{description}
+\subsubsection{Member Functions}
+\textbf{There will be get and set functions defined for each private member variable.}
+
+\paragraph{Function Gene Factory()}
+Actions Performed-Constructor
+                 
+Arguments- This function takes the name of the input data file as an argument
+                    
+Return Value-  This function returns void.
+
+\paragraph{Function static *Get\_Instance()}
+Actions Performed-Function to get a pointer to the instance of this factory
+                 
+Arguments- This function does not take any arguments.
+                    
+Return Value- This function returns a pointer to the instance of this factory
+
+\paragraph{Function Build\_Gene()}
+Actions Performed-Builds a gene
+                 
+Arguments- This function does not take any arguments.
+                    
+Return Value- This function returns an gene object
+
+%----------------------------------------------------------------------------------------
+%	SECTION 3
+%----------------------------------------------------------------------------------------
+
+%----------------------------------------------------------------------------------------
+
+\end{document}

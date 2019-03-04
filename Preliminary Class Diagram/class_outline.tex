@@ -1,0 +1,113 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% University/School Laboratory Report
+% LaTeX Template
+% Version 3.1 (25/3/14)
+%
+% This template has been downloaded from:
+% http://www.LaTeXTemplates.com
+%
+% Original author:
+% Linux and Unix Users Group at Virginia Tech Wiki 
+% (https://vtluug.org/wiki/Example_LaTeX_chem_lab_report)
+%
+% License:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass{article}
+
+\usepackage{graphicx} % Required for the inclusion of images
+\usepackage{amsmath}
+\usepackage{float}
+\usepackage{indentfirst}
+\usepackage[margin=1in]{geometry}
+\usepackage[framed,numbered]{matlab-prettifier}
+\usepackage{array}
+\usepackage{amssymb}
+\usepackage{caption}
+\usepackage{multirow}
+\setlength{\parskip}{\baselineskip}
+\renewcommand{\labelenumi}{\alph{enumi}.} 
+\setlength\extrarowheight{2pt}
+\usepackage{times}
+\usepackage{color} %red, green, blue, yellow, cyan, magenta, black, white
+\definecolor{mygreen}{RGB}{28,172,0} % color values Red, Green, Blue
+\definecolor{mylilas}{RGB}{170,55,241}
+
+%----------------------------------------------------------------------------------------
+%	DOCUMENT INFORMATION
+%----------------------------------------------------------------------------------------
+
+\begin{document}
+
+\begin{center}
+\begin{tabular}{l}
+
+\textbf{Preliminary Class Diagram}\\
+\\
+Simulation of Mendelian Laws of Genetics\\
+\textbf{Programming Assignment} 2\\
+\\
+
+Date: March 11th, 2018\\
+\\
+\textbf{Prepared by}\\
+Sean Mitchell\\
+sm0077@uah.edu\\
+\\
+
+\textbf{Prepared for}\\
+Dr. Rick Coleman\\
+CS 307 - 01: Object Oriented Programming in C++\\
+Computer Science Department\\
+University of Alabama in Huntsville\\
+
+\end{tabular}
+\end{center}
+
+%----------------------------------------------------------------------------------------
+%	SECTION 1
+%----------------------------------------------------------------------------------------
+\newpage
+\section{UML Diagram}
+\begin{center}
+\begin{minipage}{\textwidth}
+\includegraphics[width=1\linewidth]{main.png}
+\captionof{figure}{Preliminary UML Class Diagram}
+\end{minipage}
+\end{center}
+
+\newpage
+\section{Class Descriptions}
+\begin{description}
+
+\item[Simulation] The Simulation class will perform three main tasks. The first task will be to ask the user how many offspring to create. The second task will be asking the user the name of the data file to read as input. Using the input from the first two tasks, the Simulation object will create an instance of Garden, passing the number of children to create and the input file as arguments.
+
+\item[Garden] The Garden class will perform several tasks. The first task will use the data file passed as input to create two parent Organism objects. Once these two parents have been created, the Garden object will allocate data structures to store the children. Next, the Garden object will breed the two parents until the number of offspring created matches the input received from the Simulation object. Once all the offspring are created, the Garden object will sort the data structures. Finally the Garden object will return a report of the results of the simulation.
+
+\item[Parser] The Parser object will read the attributes of each gene. This object will be called by the factories to return the data needed to for the factories to create their instances.
+
+\item[Organism] The Organism class will be an instance of the object returned from the Organism Factory. The class will contain a Chromosome vector which will store all the Chromosome objects that the Organism has. Other member variables that class will have include both the common name and scientific name. The class will also have accessor and mutator functions to these member variables.
+
+\item[Organism Factory]The Organism Factory will perform the creation of instances of Organism. The Organism Factory class is a simple factory. The Organism Factory shall use the Chromosome Factory to create chromosomes for organisms. The Organism Factory shall contain a function which returns an instance of an organism with fully defined genotype. This factory will also be a Singleton.
+
+\item[Chromosome] The Chromosome class will be an instance of the object returned from the Chromosome Factory. Instances of Chromosome will store the genes for that particular chromosome. 
+
+\item[Chromosome Factory] The Chromosome Factory class will perform the creation of instances of chromosomes. This class will be a simple factory. The Chromosome Factory shall use the Master Gene Factory to create genes for chromosomes. This factory will also be a Singleton.
+
+\item[Gene] The Gene class will be an instance of the object returned from the Gene Factory. The Gene class will hold a reference to the master gene and variables to hold the specific allele characters for that instance of the gene.
+
+\item[Master Gene] The Master Gene class is a single instance for each type of gene. This instance will hold most of the information that is common to many genes.
+
+\item[Master Gene Factory] The Master Gene Factory class will perform the creation of instances of both Master Gene and Gene. This class is a simple factory. This factory will also be a Singleton.
+
+\end{description}
+
+%----------------------------------------------------------------------------------------
+
+\end{document}
